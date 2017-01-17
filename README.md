@@ -9,3 +9,9 @@ It will require `Basemap` lib and `Maperative` utility aswell.
 Currently `Maperitive` path is hardcoded in `map.py` at 95 line.
 
 If you use `Linux/MacOS` you'll need `mono` aswell to run `Maperative`.
+
+To launch `cloud.py` add login, password and track timeout arguments:
+`python cloud.py login password timeout`
+
+To lauch `maps.py` add gps_log argument:
+`python maps.py gps_log.txt`
