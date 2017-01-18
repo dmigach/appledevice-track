@@ -10,13 +10,13 @@ After that you can run tracking script in another terminal window.
 
 To use the script run map.py with following arguments:
 
-`python map.py your_icloud_login your_icloud_password gps_tracks_filename timeout_between_tracks`
+    python map.py your_icloud_login your_icloud_password gps_tracks_filename timeout_between_tracks
 
 Please note, that file with GPS track must have .gpx extension.
 
 Run example:
 
-`python map.py test@icould.com qwerty tracks.gpx 5`
+    python map.py test@icould.com qwerty tracks.gpx 5
 
 While script is running, you will track GPS continiously.
 
