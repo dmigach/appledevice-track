@@ -1,0 +1,58 @@
+<html>
+<head>
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+	<title>GPS Tracking</title>
+	<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+	<script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
+
+	<script type="text/javascript">
+
+		var map;
+
+		function init() {{
+			map = new OpenLayers.Map ("map", {{
+				controls:[
+					new OpenLayers.Control.Navigation(),
+					new OpenLayers.Control.PanZoomBar(),
+					new OpenLayers.Control.LayerSwitcher(),
+					new OpenLayers.Control.Attribution()],
+				maxExtent: new OpenLayers.Bounds(-200,-200,200,200),
+				maxResolution: 156543.0399,
+				numZoomLevels: 19,
+				units: 'm',
+				projection: new OpenLayers.Projection("EPSG:900913"),
+				displayProjection: new OpenLayers.Projection("EPSG:4326")
+			}} );
+			layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Mapnik");
+			map.addLayer(layerMapnik);
+			layerCycleMap = new OpenLayers.Layer.OSM.CycleMap("CycleMap");
+			map.addLayer(layerCycleMap);
+			layerMarkers = new OpenLayers.Layer.Markers("Markers");
+			map.addLayer(layerMarkers);
+
+			var lgpx = new OpenLayers.Layer.Vector("Lakeside cycle ride", {{
+				strategies: [new OpenLayers.Strategy.Fixed()],
+				protocol: new OpenLayers.Protocol.HTTP({{
+					url: {path},
+					format: new OpenLayers.Format.GPX()
+				}}),
+				style: {{strokeColor: "red", strokeWidth: 5, strokeOpacity: 0.9}},
+				projection: new OpenLayers.Projection("EPSG:4326")
+			}});
+			map.addLayer(lgpx);  
+
+			var lat={latitude};
+			var lon={longitude};
+			var zoom={zoom};
+			var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
+			map.setCenter(lonLat, zoom);
+		}}
+	</script>
+
+</head>
+<body onload="init();">
+	<div style="width:90%; height:90%" id="map"></div>
+</body>
+</html>
