@@ -4,7 +4,7 @@ Because of Chrome safe settings it's necessary to run built-in python tiny web-s
 
 To do that open terminal window, change directory to project folder and type 
 
-    `python -m http.server 8000`.
+    python -m http.server 8000
     
 After that you can run tracking script in another terminal window. 
 
