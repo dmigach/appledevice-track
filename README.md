@@ -1,19 +1,27 @@
 # Draw GPS route on map
 
-First run `cloud.py` and generate GPS coordinates log. 
+Because of Chrome safe settings it's necessary to run built-in python tiny web-server in script directory.
 
-While tracking (or after) run `map.py` to draw route on map.
+To do that open terminal window, change directory to project folder and type 
 
-It will require `Basemap` lib and `Maperative` utility aswell.
+    `python -m http.server 8000`.
+    
+After that you can run tracking script in another terminal window. 
 
-Currently `Maperitive` path is hardcoded in `map.py` at 95 line.
+To use the script run map.py with following arguments:
 
-If you use `Linux/MacOS` you'll need `mono` aswell to run `Maperative`.
+`python map.py your_icloud_login your_icloud_password gps_tracks_filename timeout_between_tracks`
 
-To launch `cloud.py` add login, password and track timeout arguments:
+Please note, that file with GPS track must have .gpx extension.
 
-`python cloud.py login password timeout`
+Run example:
 
-To lauch `maps.py` add gps_log argument:
+`python map.py test@icould.com qwerty tracks.gpx 5`
 
-`python maps.py gps_log.txt`
+While script is running, you will track GPS continiously.
+
+To draw current track in your browser type `update` in terminal. Internet connection required.
+
+To stop tracking use Ctrl+C.
+
+In case you want to open map with track when script isn't working, use `open index.html` to watch map.
